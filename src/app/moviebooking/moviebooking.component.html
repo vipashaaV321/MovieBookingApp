@@ -1,0 +1,129 @@
+<!-- Button trigger modal -->
+<button id="modalActivate" type="button" class="btn blue-gradient m-3" data-toggle="modal"
+  data-target="#exampleModalPreview" style="float: right;">
+  Check Show times
+</button>
+<!-- Modal -->
+<div class="modal fade bottom" id="exampleModalPreview" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+  <div class="modal-dialog modal-frame modal-bottom" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalPreviewLabel">Shows Timing</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Movie</th>
+              <th scope="col">Times</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Shawshank Redemption</td>
+              <td>10:00 , 11:00 , 13:00 , 17:00 , 20:00</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>BatMan vs SuperMan</td>
+              <td>10:00 , 11:00 , 13:00 </td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Avengers Endgame</td>
+              <td>10:00 , 11:00 , 13:00 , 15:00 </td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>Harry Potter</td>
+              <td>7:00 , 12:00 , 14:00 , 18:00 </td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>AquaMan</td>
+              <td>12:00 , 14:00 </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="container my-5 py-5 ">
+
+  <!--Section: Content-->
+  <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
+
+
+    <!--Grid row-->
+    <div class="row d-flex justify-content-center">
+
+      <!--Grid column-->
+      <div class="col-md-6">
+
+        <h3 style="text-align: center;">Register Your Movie Ticket</h3><br>
+        <!-- Form starts -->
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+          <div class="group-gap">
+            <div class="d-block my-3">
+              <div class="mb-3">
+                <select class="custom-select form-control mb-4" formControlName="MovieName">
+                  <option value="" disabled>Choose Movie</option>
+                  <option *ngFor="let Movie of Movie" [ngValue]="Movie">{{Movie}}</option>
+                </select>
+                <!-- error block -->
+                <div class="invalid-feedback" *ngIf="isSubmitted && MovieName.errors?.required">
+                  <sup>*</sup>Please select Movie
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="group-gap">
+            <div class="d-block my-3">
+              <div class="mb-3">
+                <select class="custom-select" formControlName="MovieTime">
+                  <option value="" disabled>Choose Show Timings</option>
+                  <option *ngFor="let Time of Time" [ngValue]="Time">{{Time}}<br></option>
+                </select>
+                <!-- error block -->
+                <div class="invalid-feedback" *ngIf="isSubmitted && MovieTime.errors?.required">
+                  <sup>*</sup>Please select Time
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="group-gap" style="margin-top: 35px;">
+            <div class="d-block my-3">
+              <div class="mb-3">
+                <input type="number" min="1" max="50" placeholder="Enter No of person " class="form-control"
+                  formControlName="NoOfPerson">
+              </div>
+            </div>
+          </div>
+          <br>
+          <!-- Submit Button -->
+          <button type="submit" class="btn blue btn-md btn-block" style="color:#fff">Book Ticket</button>
+        </form><!-- Form ends -->
+
+      </div>
+      <!--Grid column-->
+
+    </div>
+    <!--Grid row-->
+
+
+  </section>
+  <!--Section: Content-->
+
+
+</div>
